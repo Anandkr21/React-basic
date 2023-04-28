@@ -127,3 +127,35 @@ const output = () => {
 function Button({ clickme }) {
     return <button onClick={clickme}>Click me!</button>;
 }
+
+
+
+// TODO List
+import { useState } from "react";
+
+export default function Todo() {
+  const [text, setText] = useState("");
+  const [todo, setTodo] = useState([]);
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const addTodo = () => {
+    if (text.trim()) setTodo([...todo, text.trim()]);
+    setText("");
+  };
+
+  return (
+    <>
+      <input type="text" value={text} onChange={handleChange} />
+      <button onClick={addTodo}>Add</button>
+      <ul>
+        {todo.map((todo, index) => (
+          <li key={index}>{todo}</li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
